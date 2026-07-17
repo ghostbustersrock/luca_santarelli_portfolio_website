@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 222 20% 7%;
+    --foreground: 220 14% 93%;
+    --card: 222 18% 10%;
+    --card-foreground: 220 14% 93%;
+    --popover: 222 18% 10%;
+    --popover-foreground: 220 14% 93%;
+    --primary: 213 100% 60%;
+    --primary-foreground: 222 20% 7%;
+    --secondary: 222 16% 14%;
+    --secondary-foreground: 220 14% 93%;
+    --muted: 222 16% 14%;
+    --muted-foreground: 220 8% 55%;
+    --accent: 262 80% 65%;
+    --accent-foreground: 220 14% 93%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 222 14% 16%;
+    --input: 222 14% 16%;
+    --ring: 213 100% 60%;
+    --radius: 0.75rem;
+    --font-heading: 'Inter', system-ui, sans-serif;
+    --font-body: 'Inter', system-ui, sans-serif;
+    --font-display: 'Inter', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+    --blue: 213 100% 60%;
+    --purple: 262 80% 65%;
+    --emerald: 160 84% 39%;
+  }
+}
+
+@layer base {
+  * { @apply border-border outline-ring/50; }
+  body { @apply bg-background text-foreground font-body; }
+  html { scroll-behavior: smooth; }
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+.animated-gradient {
+  background: radial-gradient(ellipse at 20% 50%, rgba(59,130,246,0.08) 0%, transparent 60%),
+              radial-gradient(ellipse at 80% 20%, rgba(139,92,246,0.06) 0%, transparent 60%),
+              radial-gradient(ellipse at 60% 80%, rgba(16,185,129,0.04) 0%, transparent 60%);
+  animation: gradient-shift 12s ease infinite;
+  background-size: 200% 200%;
+}
+
+.glass {
+  background: rgba(255,255,255,0.03);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.07);
+}
+
+/* Like .glass, but with an opaque-enough dark backing to stay readable
+   over light photo backgrounds instead of the page's dark background. */
+.glass-dark {
+  background: rgba(13,17,23,0.85);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.07);
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar { display: none; }
