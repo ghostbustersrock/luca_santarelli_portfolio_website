@@ -27,7 +27,7 @@ export default function HeroSection() {
               <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
               <span className="text-sm text-[#8b95a1] font-mono">Available for new roles</span>
               <span className="text-[#8b95a1] mx-1">·</span>
-              <span className="flex items-center gap-1 text-sm text-[#8b95a1]"><MapPin size={13} /> London, UK</span>
+              <span className="flex items-center gap-1 text-sm text-[#8b95a1]"><MapPin size={13} /> EU or London, UK</span>
             </motion.div>
 
             <motion.h1 {...fadeUp(0.2)} className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.1] tracking-tight mb-6">
@@ -38,7 +38,7 @@ export default function HeroSection() {
             </motion.h1>
 
             <motion.p {...fadeUp(0.35)} className="text-lg text-[#8b95a1] leading-relaxed max-w-xl mb-10">
-              I'm Luca Santarelli, a Software Engineer based in London specialising in Python, cloud infrastructure, automation and modern web applications.
+              I'm Luca Santarelli, a Software Engineer based in the EU and London specialising in Python, cloud infrastructure, automation and modern web applications.
             </motion.p>
 
             <motion.div {...fadeUp(0.45)} className="flex flex-wrap gap-3 mb-10">

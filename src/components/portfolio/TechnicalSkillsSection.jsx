@@ -40,7 +40,7 @@ const skillGroups = [
   },
 ];
 
-export default function SkillsSection() {
+export default function TechnicalSkillsSection() {
   return (
     <section id="skills" className="py-24 md:py-32 px-6 md:px-8 border-t border-white/5">
       <div className="max-w-6xl mx-auto">

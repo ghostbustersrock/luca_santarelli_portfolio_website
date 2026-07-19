@@ -3,11 +3,12 @@ import { motion } from "framer-motion";
 import { Zap, Shield, RefreshCw, Clock, BookOpen, Code2 } from "lucide-react";
 
 const journey = [
-  { label: "Electrical Engineering (BEng, First Class)", sub: "Queen Mary University of London" },
-  { label: "Computer Science (MSc, Distinction)", sub: "Queen Mary University of London" },
+  { label: "Electrical and Electronic Engineering (BEng, First Class Honours)", sub: "Queen Mary University of London · 2017–2020" },
+  { label: "Computer Science (MSc, Distinction)", sub: "Queen Mary University of London · 2020–2021" },
   { label: "Full Stack & E-Commerce Development", sub: "Hullabalook · 2021–2022" },
-  { label: "Backend & Data Engineering", sub: "QuantSpark · 2022–2024" },
-  { label: "AI-Powered Applications & ETL Platforms", sub: "AlliedOffsets · 2024–Present" },
+  { label: "Backend & Data Engineering", sub: "QuantSpark · 2022–2023" },
+  { label: "Full Stack & E-Commerce Development", sub: "Hullabalook · 2023–2024" },
+  { label: "Backend, AI-Powered Applications & ETL Platforms", sub: "AlliedOffsets · 2024–Present" },
 ];
 
 const principles = [
@@ -45,7 +46,7 @@ export default function AboutSection() {
                 I started as an Electrical Engineer before completing an MSc in Computer Science with distinction at Queen Mary University of London. That academic foundation gave me a deep appreciation for systems thinking, which I've applied across full-stack development, financial data pipelines, and AI-powered tooling.
               </p>
               <p>
-                At AlliedOffsets, I own the data infrastructure that powers carbon market intelligence for analysts across the industry — scraping 15+ registries, running ETL pipelines, and building internal AI tools that save hours of manual work every week.
+                At AlliedOffsets, I own the data infrastructure that powers carbon market intelligence for analysts across the industry — scraping 40+ registries, running ETL pipelines, and building internal AI tools that save hours of manual work every week.
               </p>
               <p>
                 Outside of work, I build side projects that scratch real itches — like Maison Scanner, a property aggregator that started as a personal frustration with flat-hunting in London.
