@@ -4,7 +4,7 @@ import { ChevronDown } from "lucide-react";
 
 const experiences = [
   {
-    role: "Software Engineer — Python",
+    role: "Software Engineer",
     company: "AlliedOffsets",
     period: "2024 — Present",
     location: "London, UK",
@@ -23,6 +23,25 @@ const experiences = [
     tags: ["Python", "FastAPI", "AWS", "Selenium", "Claude API", "MCP", "PostgreSQL", "React"],
     challenge: "Scraping highly inconsistent, poorly structured registry websites at scale — each with different layouts, authentication mechanisms, and anti-bot protections — while maintaining pipeline reliability in production.",
     lesson: "Owning a production system teaches you things no tutorial ever can. Reliability, observability and graceful failure handling are not optional extras — they're the product.",
+  },
+  {
+    role: "Quality Assurance Tester (Freelance)",
+    company: "Test IO Community",
+    period: "2025 — Present",
+    location: "Remote",
+    type: "Software Testing",
+    overview: "Test IO is a crowdtesting platform connecting freelance testers with global companies to perform real-world functional, exploratory, and usability testing on web and mobile applications.",
+    impact: "Surfaced defects across a wide range of client products before release, helping teams catch issues real users would hit, and ship higher-quality software faster.",
+    achievements: [
+      "Conducted functional, exploratory, and usability testing on web and mobile applications for a range of global clients",
+      "Identified, documented, and submitted detailed bug reports, including reproduction steps, screenshots, and screen recordings",
+      "Tested across multiple real devices, operating systems, and browsers to surface cross-platform defects",
+      "Applied strong attention to detail to catch edge cases and usability issues within tight test cycles",
+      "Worked independently as a freelance crowd tester, managing testing priorities across concurrent client projects",
+    ],
+    tags: ["Manual Testing", "Exploratory Testing", "Usability Testing", "Bug Reporting", "Cross-browser Testing", "Cross-platform Testing"],
+    challenge: "Thoroughly testing unfamiliar products under tight cycles, working independently as a remote crowd tester without direct access to the development team.",
+    lesson: "Testing sharpened a habit that carries directly into engineering: assume nothing works until you've verified it yourself, and a clear bug report is as valuable as the bug itself.",
   },
   {
     role: "Software Engineer",
