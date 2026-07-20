@@ -21,14 +21,19 @@ const ToastViewport = React.forwardRef(({ ...props }, ref) => (
 ));
 ToastViewport.displayName = "ToastViewport";
 
+// Fade timing lives here as the source of truth; use-toast.jsx's
+// TOAST_FADE_DURATION must match this so removal happens right as the fade ends.
+export const TOAST_FADE_DURATION = 300;
+
 const toastVariants = cva(
-  "group pointer-events-auto relative flex w-full items-center justify-between space-x-4 overflow-hidden rounded-md border p-6 pr-8 shadow-lg transition-all data-[swipe=cancel]:translate-x-0 data-[swipe=end]:translate-x-[var(--radix-toast-swipe-end-x)] data-[swipe=move]:translate-x-[var(--radix-toast-swipe-move-x)] data-[swipe=move]:transition-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[swipe=end]:animate-out data-[state=closed]:fade-out-80 data-[state=closed]:slide-out-to-right-full data-[state=open]:slide-in-from-top-full data-[state=open]:sm:slide-in-from-bottom-full",
+  "group pointer-events-auto relative flex w-full items-center justify-between space-x-4 overflow-hidden rounded-md border p-6 pr-8 shadow-lg",
   {
     variants: {
       variant: {
         default: "border bg-background text-foreground",
         destructive:
           "destructive group border-destructive bg-destructive text-destructive-foreground",
+        success: "border-emerald-500/40 bg-emerald-950 text-emerald-50",
       },
     },
     defaultVariants: {
@@ -37,11 +42,29 @@ const toastVariants = cva(
   }
 );
 
-const Toast = React.forwardRef(({ className, variant, ...props }, ref) => {
+const Toast = React.forwardRef(({ className, variant, open = true, onOpenChange, ...props }, ref) => {
+  // Not real Radix Toast, so there's no data-state to animate off of — this
+  // mounted flag lets a freshly-added toast fade in instead of popping in at
+  // full opacity, and `open` (flipped to false right before removal) fades it out.
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    const frame = requestAnimationFrame(() => setMounted(true));
+    return () => cancelAnimationFrame(frame);
+  }, []);
+
+  const visible = mounted && open;
+
   return (
     <div
       ref={ref}
-      className={cn(toastVariants({ variant }), className)}
+      className={cn(
+        toastVariants({ variant }),
+        "transition-all ease-out",
+        visible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2",
+        className
+      )}
+      style={{ transitionDuration: `${TOAST_FADE_DURATION}ms` }}
       {...props}
     />
   );

@@ -12,19 +12,19 @@ const skillGroups = [
     label: "Frontend",
     color: "text-purple",
     bg: "bg-purple/10 border-purple/20",
-    skills: ["React", "JavaScript", "TypeScript", "Vue", "Tailwind CSS", "HTML/CSS"],
+    skills: ["React", "JavaScript", "TypeScript", "Vue.js", "HTML/CSS", "Tailwind CSS"],
   },
   {
     label: "Data & Databases",
     color: "text-emerald-400",
     bg: "bg-emerald-400/10 border-emerald-400/20",
-    skills: ["PostgreSQL", "Pandas", "NumPy", "ETL Pipelines", "Web Scraping", "Selenium"],
+    skills: ["PostgreSQL", "Pandas", "NumPy", "ETL Pipelines", "Web Scraping", "Selenium", "BeautifulSoup"],
   },
   {
     label: "Cloud & Infrastructure",
     color: "text-blue",
     bg: "bg-blue/10 border-blue/20",
-    skills: ["AWS (EC2, S3, ECS)", "Docker", "CI/CD", "Linux", "Render", "Git / GitLab"],
+    skills: ["AWS (EC2, S3, ECS)", "Docker", "CI/CD", "Git / GitLab", "Personal server"],
   },
   {
     label: "AI & Automation",
@@ -77,7 +77,7 @@ export default function TechnicalSkillsSection() {
               <div>
                 <p className="text-sm font-semibold text-white mb-3">Currently Exploring</p>
                 <ul className="space-y-2">
-                  {["Kubernetes", "GraphQL", "RAG Systems", "LLM Agents"].map((item) => (
+                  {["System Design", "RAG Systems", "LLM Agents"].map((item) => (
                     <li key={item} className="flex items-center gap-2 text-sm text-[#8b95a1]">
                       <span className="h-1.5 w-1.5 rounded-full bg-blue flex-none" />{item}
                     </li>
@@ -87,7 +87,7 @@ export default function TechnicalSkillsSection() {
               <div>
                 <p className="text-sm font-semibold text-white mb-3">Deepening</p>
                 <ul className="space-y-2">
-                  {["Distributed Systems", "System Design", "Data Modelling", "Cloud Architecture"].map((item) => (
+                  {["Data Modelling", "Docker", "Cloud Computing"].map((item) => (
                     <li key={item} className="flex items-center gap-2 text-sm text-[#8b95a1]">
                       <span className="h-1.5 w-1.5 rounded-full bg-purple flex-none" />{item}
                     </li>
@@ -97,7 +97,7 @@ export default function TechnicalSkillsSection() {
               <div>
                 <p className="text-sm font-semibold text-white mb-3">On the Roadmap</p>
                 <ul className="space-y-2">
-                  {["Open Source Contributions", "Technical Writing", "Architecture Diagrams", "Conference Talks"].map((item) => (
+                  {["Product Management", "Technical Writing"].map((item) => (
                     <li key={item} className="flex items-center gap-2 text-sm text-[#8b95a1]">
                       <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 flex-none" />{item}
                     </li>

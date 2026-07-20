@@ -8,59 +8,60 @@ const projects = [
     category: "Full-Stack Web App",
     tagline: "Aggregating UK property listings in one place.",
     problem: "Finding rental properties in London required manually checking multiple portals — OpenRent, OnTheMarket, RightRent and others — every day. No single tool aggregated them reliably.",
-    goal: "Build a fast, reliable property search platform that aggregates listings across multiple UK portals with live results and map integration.",
-    solution: "A full-stack application with a React frontend and FastAPI backend. The backend runs live scraping jobs across multiple portals, streaming results back to the UI in real-time using server-sent events. Property locations are geocoded and displayed on an interactive Google Maps interface.",
-    architecture: ["React (Frontend)", "FastAPI (Backend API)", "Selenium + BeautifulSoup (Scrapers)", "PostgreSQL (Storage)", "Docker (Containerisation)", "Render (Deployment)"],
-    tags: ["React", "FastAPI", "Python", "Docker", "Render", "Google Maps API"],
+    goal: "Build a fast, reliable property search platform that aggregates listings across multiple UK portals with live results.",
+    solution: "A full-stack application with a React frontend and FastAPI backend. The backend runs scheduled scrapers across multiple portals, updating saved and cached data on PostgreSQL and Redis. Properties are scraped using outcodes, with results streaming to the frontend in real time after a user's search.",
+    architecture: ["React (Frontend)", "FastAPI (Backend API)", "Exposed APIs + Selenium + BeautifulSoup (Scrapers)", "PostgreSQL (Storage)", "Redis (Caching)", "Docker (Containerisation)", "Personal Server (Deployment)"],
+    tags: ["React", "FastAPI", "Python", "PostgreSQL", "Redis", "Docker", "Google Maps API"],
     challenges: "Building reliable scrapers across portals that actively resist automated access — handling dynamic JavaScript rendering, rotating user agents, and maintaining uptime when target sites change their layouts.",
     results: "A fully deployed, working application at maison-scanner.com used to find rental properties across multiple London portals from a single search.",
-    improvements: "Add email alerts for new matching listings, improve scraper resilience with proxy rotation, and expand coverage to more portals.",
+    improvements: ["Email alerts for new matching listings", "Improve scraper resilience with proxy rotation", "Deduplicating properties listings", "Expand app to include properties to buy"],
     link: "https://maison-scanner.com",
     linkLabel: "maison-scanner.com",
   },
   {
     title: "AlliedOffsets ETL Platform",
     category: "Data Engineering",
-    tagline: "Scraping 15+ carbon registries at scale.",
-    problem: "Carbon market analysts needed up-to-date data from 15+ global registries — each with different structures, authentication, and anti-bot protections. Maintaining this manually was not sustainable.",
+    tagline: "Scraping 40+ carbon registries at scale.",
+    problem: "Carbon market analysts needed up-to-date data from 40+ global registries — each with different structures, authentication, and anti-bot protections. Maintaining this manually was not sustainable.",
     goal: "Build a reliable, automated ETL platform that scrapes, transforms and loads carbon credit data into a central database daily.",
     solution: "A modular Python ETL framework where each registry has a dedicated scraper module. Jobs run on a schedule via AWS, with robust error handling, retry logic and alerting. Data is cleaned, normalised and loaded into PostgreSQL via SQLAlchemy ORM models.",
-    architecture: ["Python (Core ETL)", "Selenium + Requests (Scrapers)", "SQLAlchemy (ORM)", "PostgreSQL (Database)", "AWS EC2 + S3 (Infra)", "Alerting + Monitoring"],
-    tags: ["Python", "Selenium", "SQLAlchemy", "PostgreSQL", "AWS", "ETL"],
+    architecture: ["Python (Core ETL)", "Exposed APIs + Selenium + BeautifulSoup (Scrapers)", "SQLAlchemy (ORM)", "PostgreSQL (Database)", "AWS EC2", "Alerting + Monitoring"],
+    tags: ["Python", "Requests", "Selenium", "SQLAlchemy", "PostgreSQL", "AWS", "ETL"],
     challenges: "Maintaining scrapers against constantly changing registry websites without breaking the production pipeline. Implementing graceful degradation so one failing scraper doesn't block the entire job.",
-    results: "A production ETL system processing daily data from 15+ registries, feeding the core AlliedOffsets product used by analysts across the carbon markets industry.",
-    improvements: "Move to a more declarative scraper config format, add data quality checks at the pipeline level, and explore LLM-based extraction for unstructured document parsing.",
+    results: "A production ETL system processing daily data from 40+ registries, feeding the core AlliedOffsets product used by analysts across the carbon markets industry.",
+    improvements: ["Move to a more declarative scraper config format", "explore LLM-based extraction for unstructured document parsing"],
     link: null,
   },
   {
-    title: "RavenAI — Internal AI Assistant",
+    title: "AlliedOffsets RavenAI — Internal AI Assistant",
     category: "AI Tooling",
-    tagline: "Natural language queries over internal meeting data.",
-    problem: "The team used Fathom to record and transcribe meetings, but extracting insights — like 'how many client calls did we have this week?' — required manually digging through transcripts.",
-    goal: "Build an AI-powered Slack bot that could answer natural-language questions about meeting data, statistics, and summaries using the Fathom API.",
-    solution: "A Claude-powered Slack bot backed by a custom MCP (Model Context Protocol) server built on top of the Fathom API. The MCP server exposes time-aware function tools that the model can call to retrieve accurate statistics — handling ambiguous queries like 'last week' or 'yesterday' intelligently.",
-    architecture: ["Claude API (LLM)", "MCP Server (Custom)", "Fathom API (Data source)", "Slack Bot API (Interface)", "Python (Backend)"],
-    tags: ["Python", "Claude API", "MCP", "Slack", "FastAPI"],
+    tagline: "Natural language queries over internal meetings and API data.",
+    problem: "The analysts and sales team used Fathom to record and transcribe meetings, but extracting insights — like 'how many client calls did we have this week?' — required manual search. Additionally, our sales team did not have an efficient way to analyse key clients API usage data, without involving the tech team.",
+    goal: "Build an AI-powered Slack bot that answers natural-language questions about meeting data, summarizes meetings, and outputs statistics and internal API usage data from clients.",
+    solution: "A Claude-powered Slack bot backed by a custom MCP (Model Context Protocol) server. The MCP server exposes time-aware function tools that the model can call to retrieve accurate statistics — handling ambiguous queries like 'last week' or 'yesterday' intelligently.",
+    architecture: ["Claude API (LLM)", "MCP Server (Custom)", "Fathom and AlliedOffsets APIs (Data source)", "Slack Bot API (Interface)", "Python (Backend)"],
+    tags: ["Python", "Claude API", "MCP", "Slack"],
     challenges: "Making the model reliably interpret time-relative queries and call the right tools with the right parameters. Getting MCP tool definitions right so Claude calls them correctly without hallucinating results.",
-    results: "An internal tool used by the AlliedOffsets team to query meeting data conversationally, saving hours of manual transcript review per week.",
-    improvements: "Extend to other internal data sources, add memory across conversations, and surface weekly digests automatically.",
-    link: "https://github.com/ghostbustersrock",
-    linkLabel: "GitHub",
+    results: "An internal tool used by the AlliedOffsets team to query meeting and clients API usage data conversationally, saving hours of manual review per week.",
+    improvements: ["Extend function tools to answer more complex queries", "Extend to other internal data sources", "Add memory across conversations"],
+    link: null,
   },
   {
-    title: "iRecycle",
+    title: "iRecycle — MSc Final Year Project",
     category: "iOS Application",
     tagline: "Barcode scanning for intelligent recycling guidance.",
     problem: "Most people don't know how to recycle product packaging correctly — different materials, different councils, different rules. The information exists but isn't accessible at the point of disposal.",
     goal: "Build an iOS app that scans a product's barcode and returns clear, actionable recycling guidance for the product and its components.",
     solution: "A native iOS app built in Swift that uses the device camera to scan barcodes, looks up product information, and returns per-component recycling guidance. Designed to be fast, intuitive and work offline for previously scanned products.",
-    architecture: ["Swift (iOS Native)", "AVFoundation (Camera/Barcode)", "Product API (Lookup)", "Core Data (Local cache)"],
+    architecture: ["Swift (iOS Native)", "AVFoundation (Camera/Barcode)", "Google Search API (Lookup)", "Core Data (Local cache)"],
     tags: ["Swift", "iOS", "AVFoundation", "Core Data"],
     challenges: "Handling the enormous variability in product barcode databases and building a UI that communicated complex recycling rules clearly enough for any user to act on immediately.",
     results: "A fully functional iOS application submitted as a first-class final-year project at Queen Mary University of London.",
-    improvements: "Expand the product database coverage, add community-sourced recycling tips, and integrate local council recycling rules by postcode.",
-    link: null,
+    improvements: ["Expand the product database coverage", "Add community-sourced recycling tips", "Integrate local council recycling rules by postcode"],
+    link: "https://github.com/ghostbustersrock/iRecycle",
+    linkLabel: "GitHub",
   },
+  // TODO: add the expenses report + fantasy carbon
 ];
 
 function ProjectModal({ project, onClose }) {
@@ -114,13 +115,26 @@ function ProjectModal({ project, onClose }) {
             {[
               { label: "Challenges", content: project.challenges },
               { label: "Results", content: project.results },
-              { label: "What I'd Improve", content: project.improvements },
+              // { label: "What I'd Improve", content: project.improvements },
             ].map(({ label, content }) => (
               <div key={label}>
                 <p className="text-xs font-mono text-[#8b95a1] uppercase mb-2">{label}</p>
                 <p className="text-sm text-[#8b95a1] leading-relaxed">{content}</p>
               </div>
             ))}
+
+             <div>
+              <p className="text-xs font-mono text-[#8b95a1] uppercase mb-3">What I'd Improve</p>
+              <div className="flex flex-col gap-1.5">
+                {project.improvements.map((item, i) => (
+                  <div key={i} className="flex items-center gap-2 text-sm text-[#8b95a1]">
+                    <ChevronRight size={13} className="text-blue flex-none" />
+                    {item}
+                    {i < project.improvements.length - 1 && <div className="w-px h-3 bg-white/10 ml-1" />}
+                  </div>
+                ))}
+              </div>
+            </div>
 
             <div>
               <p className="text-xs font-mono text-[#8b95a1] uppercase mb-3">Tech Stack</p>
@@ -172,9 +186,12 @@ export default function ProjectsSection() {
               <h3 className="text-xl font-bold text-white mb-2">{project.title}</h3>
               <p className="text-sm text-[#8b95a1] leading-relaxed mb-5">{project.tagline}</p>
               <div className="flex flex-wrap gap-2">
-                {project.tags.slice(0, 4).map((tag) => (
+                {project.tags.map((tag) => (
                   <span key={tag} className="text-xs font-mono px-2.5 py-1 rounded-md bg-white/5 text-[#8b95a1]">{tag}</span>
                 ))}
+                {/* {project.tags.slice(0, 4).map((tag) => (
+                  <span key={tag} className="text-xs font-mono px-2.5 py-1 rounded-md bg-white/5 text-[#8b95a1]">{tag}</span>
+                ))} */}
               </div>
             </motion.div>
           ))}

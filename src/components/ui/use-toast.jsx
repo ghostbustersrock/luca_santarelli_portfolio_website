@@ -1,8 +1,9 @@
 // Inspired by react-hot-toast library
 import { useState, useEffect } from "react";
+import { TOAST_FADE_DURATION } from "@/components/ui/toast";
 
 const TOAST_LIMIT = 20;
-const TOAST_REMOVE_DELAY = 1000000;
+const TOAST_VISIBLE_DURATION = 4000; // how long a toast stays fully shown before it fades out on its own
 
 const actionTypes = {
   ADD_TOAST: "ADD_TOAST",
@@ -20,28 +21,27 @@ function genId() {
 
 const toastTimeouts = new Map();
 
-const addToRemoveQueue = (toastId) => {
-  if (toastTimeouts.has(toastId)) {
-    return;
+// Always clears any previously scheduled timeout for this id first, so a
+// manual dismiss can pre-empt the toast's own auto-dismiss timer (and vice versa).
+const scheduleToastTimeout = (toastId, delay, action) => {
+  const existing = toastTimeouts.get(toastId);
+  if (existing) {
+    clearTimeout(existing);
   }
-
   const timeout = setTimeout(() => {
     toastTimeouts.delete(toastId);
+    action();
+  }, delay);
+  toastTimeouts.set(toastId, timeout);
+};
+
+const addToRemoveQueue = (toastId) => {
+  scheduleToastTimeout(toastId, TOAST_FADE_DURATION, () => {
     dispatch({
       type: actionTypes.REMOVE_TOAST,
       toastId,
     });
-  }, TOAST_REMOVE_DELAY);
-
-  toastTimeouts.set(toastId, timeout);
-};
-
-const _clearFromRemoveQueue = (toastId) => {
-  const timeout = toastTimeouts.get(toastId);
-  if (timeout) {
-    clearTimeout(timeout);
-    toastTimeouts.delete(toastId);
-  }
+  });
 };
 
 export const reducer = (state, action) => {
@@ -79,6 +79,9 @@ export const reducer = (state, action) => {
           t.id === toastId || toastId === undefined
             ? {
                 ...t,
+                // Flipping this to false is what triggers the fade-out transition
+                // in Toast (src/components/ui/toast.jsx) — actual removal from the
+                // array happens TOAST_FADE_DURATION later, via addToRemoveQueue above.
                 open: false,
               }
             : t
@@ -134,6 +137,9 @@ function toast({ ...props }) {
     },
   });
 
+  // Starts the fade-out once the toast has been fully visible for a while.
+  scheduleToastTimeout(id, TOAST_VISIBLE_DURATION, dismiss);
+
   return {
     id,
     dismiss,
@@ -157,8 +163,10 @@ function useToast() {
   return {
     ...state,
     toast,
+    // Same DISMISS_TOAST path as the auto-timer: starts the fade-out immediately
+    // (pre-empting whatever timer was pending) instead of yanking the toast away.
     dismiss: (toastId) => dispatch({ type: actionTypes.DISMISS_TOAST, toastId }),
   };
 }
 
-export { useToast, toast }; 
+export { useToast, toast };
