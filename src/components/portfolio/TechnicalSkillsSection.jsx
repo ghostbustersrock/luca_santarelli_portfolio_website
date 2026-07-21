@@ -97,7 +97,7 @@ export default function TechnicalSkillsSection() {
               <div>
                 <p className="text-sm font-semibold text-white mb-3">On the Roadmap</p>
                 <ul className="space-y-2">
-                  {["Product Management", "Technical Writing"].map((item) => (
+                  {["Product Management/Engineering", "Technical Writing"].map((item) => (
                     <li key={item} className="flex items-center gap-2 text-sm text-[#8b95a1]">
                       <span className="h-1.5 w-1.5 rounded-full bg-emerald-400 flex-none" />{item}
                     </li>
