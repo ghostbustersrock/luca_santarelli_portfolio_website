@@ -24,7 +24,7 @@ const skillGroups = [
     label: "Cloud & Infrastructure",
     color: "text-blue",
     bg: "bg-blue/10 border-blue/20",
-    skills: ["AWS (EC2, S3, ECS)", "Docker", "CI/CD", "Git / GitLab", "Personal server"],
+    skills: ["AWS (EC2, S3, ECS)", "Docker", "CI/CD", "Git / GitLab", "Personal server", "Render"],
   },
   {
     label: "AI & Automation",
