@@ -47,7 +47,7 @@ const projects = [
     problem: "Carbon market analysts needed up-to-date data from 40+ global registries — each with different structures, authentication, and anti-bot protections. Maintaining this manually was not sustainable.",
     goal: "Build a reliable, automated ETL platform that scrapes, transforms and loads carbon credit data into a central database daily.",
     solution: "A modular Python ETL framework where each registry has a dedicated scraper module. Jobs run on a schedule via AWS, with robust error handling, retry logic and alerting. Data is cleaned, normalised and loaded into PostgreSQL via SQLAlchemy ORM models.",
-    architecture: ["Python (Core ETL)", "Exposed APIs + Selenium + BeautifulSoup (Scrapers)", "SQLAlchemy (ORM)", "PostgreSQL (Database)", "AWS EC2", "Alerting + Monitoring"],
+    architecture: ["Python (Core ETL)", "Exposed APIs + Selenium + BeautifulSoup (Scrapers)", "SQLAlchemy (ORM)", "PostgreSQL (Storage)", "AWS EC2", "Alerting + Monitoring"],
     tags: ["Python", "Requests", "Selenium", "SQLAlchemy", "PostgreSQL", "AWS", "ETL"],
     challenges: "Maintaining scrapers against constantly changing registry websites without breaking the production pipeline. Implementing graceful degradation so one failing scraper doesn't block the entire job.",
     results: "A production ETL system processing daily data from 40+ registries, feeding the core AlliedOffsets product used by analysts across the carbon markets industry.",
@@ -69,6 +69,26 @@ const projects = [
     link: null,
   },
   {
+    title: "AlliedOffsets Fantasy Carbon League",
+    category: "Full-Stack Web App",
+    tagline: "A fantasy-sports-style trading game built on real carbon market data.",
+    problem: "AlliedOffsets needed an engaging way to showcase its carbon market pricing data beyond dashboards and reports — something that let colleagues, clients and partners interact with real market data directly instead of just reading about it.",
+    goal: "Build a fantasy-sports-style game where users build a virtual portfolio of real carbon credit projects and compliance allowances, trading against live prices from AlliedOffsets' own market database and competing against colleagues and other companies.",
+    solution: "A monolithic FastAPI app built solo, end-to-end — server-rendered Jinja2 templates enhanced with vanilla JS for an SPA-like feel without a JS build step. Users start with $10,000 in virtual cash that decays weekly to encourage investing, buy and sell units of real carbon projects and compliance allowances (EU ETS, UK ETS, and more) against live prices, and are ranked individually and by organisation. Auth is fully delegated to AlliedOffsets' own login service via a shared JWT cookie, and prices refresh three times a week via sibling Prefect data pipelines.",
+    architecture: ["FastAPI (Backend + Server-Rendered Frontend)", "Jinja2 + Vanilla JS (UI)", "SQLAlchemy + Alembic (ORM + Migrations)", "PostgreSQL (Storage)", "Plotly (Charts)", "Delegated Auth (JWT Cookie + AlliedOffsets Login API)", "Google Sheets API (Compliance Pricing)", "Docker + AWS ECS (Deployment)", "GitLab CI (CI/CD)"],
+    tags: ["Python", "FastAPI", "SQLAlchemy", "PostgreSQL", "Jinja2", "Alembic", "AWS", "Docker"],
+    challenges: "Designing a time-decaying game economy — weekly cash decay with a floor — as a clean, unit-tested pure function; building a server-rendered app that still felt like an SPA through hand-rolled fetch-based JSON endpoints for autocomplete, live pricing and filterable tables; and integrating delegated authentication against a separate internal auth service with scope-based access control, all as the sole engineer across the entire stack.",
+    results: "A fully deployed, production application live at fantasy-carbon.alliedoffsets.com and aofccc.com, used internally and by client-facing teams to gamify AlliedOffsets' carbon market data across full trading seasons.",
+    improvements: [
+      "Migrate the Jinja2 + vanilla JS templates to React",
+      "Replace the Google Sheets pricing dependency with a database table",
+      "Add responsive/mobile support",
+      "Real-time portfolio/ranking updates via WebSockets, instead of polling"
+    ],
+    link: "https://alliedoffsets.com/fantasy-carbon-trading-league/",
+    linkLabel: "fantasy-carbon.alliedoffsets.com",
+  },
+  {
     title: "iRecycle — MSc Final Year Project",
     category: "iOS Application",
     tagline: "Barcode scanning for intelligent recycling guidance.",
@@ -83,7 +103,6 @@ const projects = [
     link: "https://github.com/ghostbustersrock/iRecycle",
     linkLabel: "GitHub",
   },
-  // TODO: add fantasy carbon
 ];
 
 function ProjectModal({ project, onClose }) {
