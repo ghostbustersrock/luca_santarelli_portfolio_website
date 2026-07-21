@@ -18,7 +18,7 @@ const skillGroups = [
     label: "Data & Databases",
     color: "text-emerald-400",
     bg: "bg-emerald-400/10 border-emerald-400/20",
-    skills: ["PostgreSQL", "Pandas", "NumPy", "ETL Pipelines", "Web Scraping", "Selenium", "BeautifulSoup"],
+    skills: ["PostgreSQL", "Alembic", "Pandas", "NumPy", "ETL Pipelines", "Web Scraping", "Selenium", "BeautifulSoup"],
   },
   {
     label: "Cloud & Infrastructure",

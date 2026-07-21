@@ -10,13 +10,35 @@ const projects = [
     problem: "Finding rental properties in London required manually checking multiple portals — OpenRent, OnTheMarket, RightRent and others — every day. No single tool aggregated them reliably.",
     goal: "Build a fast, reliable property search platform that aggregates listings across multiple UK portals with live results.",
     solution: "A full-stack application with a React frontend and FastAPI backend. The backend runs scheduled scrapers across multiple portals, updating saved and cached data on PostgreSQL and Redis. Properties are scraped using outcodes, with results streaming to the frontend in real time after a user's search.",
-    architecture: ["React (Frontend)", "FastAPI (Backend API)", "Exposed APIs + Selenium + BeautifulSoup (Scrapers)", "PostgreSQL (Storage)", "Redis (Caching)", "Docker (Containerisation)", "Personal Server (Deployment)"],
-    tags: ["React", "FastAPI", "Python", "PostgreSQL", "Redis", "Docker", "Google Maps API"],
+    architecture: ["React (Frontend)", "FastAPI (Backend API)", "Exposed APIs + Selenium + BeautifulSoup (Scrapers)", "SQLAlchemy + Alembic (ORM + Migrations)", "PostgreSQL (Storage)", "Redis (Caching)", "Docker (Containerisation)", "Personal Server (Deployment)"],
+    tags: ["React", "FastAPI", "Python", "PostgreSQL", "SQLAlchemy", "Alembic", "Redis", "Docker", "Google Maps API"],
     challenges: "Building reliable scrapers across portals that actively resist automated access — handling dynamic JavaScript rendering, rotating user agents, and maintaining uptime when target sites change their layouts.",
     results: "A fully deployed, working application at maison-scanner.com used to find rental properties across multiple London portals from a single search.",
     improvements: ["Email alerts for new matching listings", "Improve scraper resilience with proxy rotation", "Deduplicating properties listings", "Expand app to include properties to buy"],
     link: "https://maison-scanner.com",
     linkLabel: "maison-scanner.com",
+  },
+  {
+    title: "Expenses Report",
+    category: "Full-Stack Web App",
+    tagline: "Tracking monthly personal expenses by category.",
+    problem: "Tracking personal spending month-to-month usually means a spreadsheet — no quick breakdown of where money's going by category, no view of how spending trends over time, and no simple running log of what was added or removed.",
+    goal: "Build a lightweight self-hosted app to log expenses by category each month, see an at-a-glance breakdown against income, and track spending trends over time.",
+    solution: "A full-stack app with a FastAPI backend — SQLAlchemy models and Alembic migrations — storing categorised expense entries and a timestamped activity log in PostgreSQL, paired with a React (Vite) frontend using MUI X Charts for visualisation. Expenses are logged against 11 categories for the current month, with a running breakdown showing per-category share and an optional income field to see savings (or overspend) for the month.",
+    architecture: ["React + Vite (Frontend)", "MUI X Charts (Visualization)", "FastAPI (Backend API)", "SQLAlchemy + Alembic (ORM + Migrations)", "PostgreSQL (Storage)"],
+    tags: ["React", "FastAPI", "Python", "PostgreSQL", "SQLAlchemy", "Alembic"],
+    challenges: "Designing a data model and API that cleanly supports both adding and removing amounts against a running monthly total while keeping a fully auditable activity log of every change, and building trend charts that stay meaningful even in months with sparse data.",
+    results: "A working self-hosted expense tracker used to log and review personal spending month over month, with category breakdowns and long-term trend charts.",
+    improvements: [
+      "Budgets per category — monthly targets shown as progress against the existing breakdown bars",
+      "Recurring expenses — auto-log Rent/Subscriptions each month with a one-click confirm",
+      "Backdated entries — log expenses against a past date instead of only the current month",
+      "Persisted income + savings-over-time chart — store income per month instead of resetting on every visit",
+      "CSV/PDF export for taxes and personal record-keeping",
+      "Custom categories — add, rename or archive categories instead of the current hardcoded set",
+    ],
+    link: "https://github.com/ghostbustersrock/expenses_report",
+    linkLabel: "GitHub",
   },
   {
     title: "AlliedOffsets ETL Platform",
@@ -61,7 +83,7 @@ const projects = [
     link: "https://github.com/ghostbustersrock/iRecycle",
     linkLabel: "GitHub",
   },
-  // TODO: add the expenses report + fantasy carbon
+  // TODO: add fantasy carbon
 ];
 
 function ProjectModal({ project, onClose }) {
