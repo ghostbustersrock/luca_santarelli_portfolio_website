@@ -121,7 +121,7 @@ export default function ContactSection() {
                   Open to new roles & freelance
                 </p>
               </div>
-              <a href="/cv-luca.pdf" download className="flex items-center gap-2 text-sm text-blue hover:underline">
+              <a href="/Luca_Santarelli_CV.pdf" download className="flex items-center gap-2 text-sm text-blue hover:underline">
                 <Download size={14} /> CV
               </a>
             </div>

@@ -45,7 +45,7 @@ export default function HeroSection() {
               <button onClick={() => scrollTo("projects")} className="px-5 py-2.5 rounded-lg bg-blue text-[#0a0f1e] font-semibold text-sm hover:opacity-90 transition-opacity">
                 View Projects
               </button>
-              <a href="/cv-luca.pdf" download className="flex items-center gap-2 px-5 py-2.5 rounded-lg border border-white/10 text-white text-sm hover:bg-white/5 transition-colors">
+              <a href="/Luca_Santarelli_CV.pdf" download className="flex items-center gap-2 px-5 py-2.5 rounded-lg border border-white/10 text-white text-sm hover:bg-white/5 transition-colors">
                 <Download size={15} /> Download CV
               </a>
               <a href="https://github.com/ghostbustersrock" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 px-5 py-2.5 rounded-lg border border-white/10 text-white text-sm hover:bg-white/5 transition-colors">
